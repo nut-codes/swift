@@ -143,6 +143,10 @@ public struct NutCode {
     }
 
     static func logByte(of nutrient: Nutrient, for mass: Mass) -> UInt8 {
+        if mass == 0 {
+            return 0x00
+        }
+
         let logFraction = (log2(mass) - log2(nutrient.minimumRepresentableMass)) / (log2(nutrient.maximumRepresentableMass) - log2(nutrient.minimumRepresentableMass))
 
         return UInt8(logFraction * 255.0)
